@@ -56,3 +56,9 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+# Composer Packages
+/vendor
+
+# Distribution Directory
+/dist

@@ -1,0 +1,43 @@
+{
+  "name": "wp-framework/wp-framework-site",
+  "description": "Base WordPress local development environment",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://packagist.org"
+    }
+  ],
+  "require": {
+    "johnpbloch/wordpress": "*",
+    "wpackagist-plugin/developer": "*",
+    "wpackagist-plugin/debug-bar": "*",
+    "wpackagist-plugin/akismet": "*",
+    "wpackagist-plugin/theme-check": "*",
+    "wpackagist-plugin/query-monitor": "*",
+    "wpackagist-plugin/debug-meta-data": "*",
+    "wpackagist-plugin/development-environment-notification": "*",
+    "wpackagist-plugin/reset-wp": "*",
+    "wpackagist-plugin/wp-log-viewer": "*",
+    "wpackagist-plugin/local-development": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tracy Rotton",
+      "email": "trotton@taupecatstudios.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "extra": {
+    "wordpress-install-dir": "dist/_wp",
+    "installer-paths": {
+      "dist/wp-content/plugins/{$name}": ["type:wordpress-plugin"],
+      "dist/wp-content/themes/{$name}": ["type:wordpress-theme"]
+    }
+  }
+}
