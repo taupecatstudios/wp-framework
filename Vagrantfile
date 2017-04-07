@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
   config.vm.define 'wp-framework-site' do |node|
-    node.vm.provision :shell, :path => "scripts/bootstrap.sh"
+    node.vm.provision :shell, :path => "scripts/provision.sh"
     node.vm.hostname = 'wp-framework-site'
     node.vm.network :private_network, ip: '192.168.33.10'
     node.hostmanager.aliases = %w( wp-framework.local )
