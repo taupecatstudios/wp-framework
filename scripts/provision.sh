@@ -30,6 +30,9 @@ apt-get install -y \
 	php-mbstring \
 	php-mysql \
 	>/dev/null 2>&1
+rm /etc/php/7.0/fpm/php.ini
+ln -s /vagrant/scripts/php.ini /etc/php/7.0/fpm/php.ini
+service php7.0-fpm restart
 
 echo "Installing WP-CLI"
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar >/dev/null 2>&1
