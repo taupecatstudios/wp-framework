@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$private_ip       = '192.168.33.10'
+$hostname         = 'wp-framework-site'
+$hostname_alias   = 'wp-framework.local'
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -14,35 +18,16 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
-
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
-  config.vm.define 'wp-framework-site' do |node|
+  config.vm.define $hostname do |node|
     node.vm.provision :shell, :path => "scripts/provision.sh"
-    node.vm.hostname = 'wp-framework-site'
-    node.vm.network :private_network, ip: '192.168.33.10'
-    node.hostmanager.aliases = %w( wp-framework.local )
+    node.vm.hostname = $hostname
+    node.vm.network :private_network, ip: $private_ip
+    node.hostmanager.aliases = $hostname_alias
   end
-
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network "public_network"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -63,7 +48,7 @@ Vagrant.configure("2") do |config|
 
     v.customize ["modifyvm", :id, "--memory", mem]
     v.customize ["modifyvm", :id, "--cpus", cpus]
-    v.name = "wp-framework-site"
+    v.name = $hostname
   end
 
 end
