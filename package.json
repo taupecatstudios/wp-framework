@@ -1,0 +1,42 @@
+{
+  "name": "wp-framework",
+  "version": "1.0.0",
+  "description": "The foundation of WordPress projects.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "susy": "^2.2.12"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.6.0",
+    "csswring": "^5.1.1",
+    "del": "^2.2.2",
+    "graceful-fs": "^4.1.11",
+    "gulp": "^3.9.1",
+    "gulp-composer": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-deporder": "^1.1.0",
+    "gulp-git": "^1.13.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-shell": "^0.5.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-unzip": "^0.2.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.10",
+    "merge-stream": "^1.0.1",
+    "run-sequence": "^1.2.2",
+    "yargs": "^6.5.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "author": "Taupecat Studios",
+  "license": "UNLICENSED",
+  "repository": "https://github.com/taupecatstudios/wp-framework"
+}
