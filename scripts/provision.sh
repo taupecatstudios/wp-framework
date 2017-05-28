@@ -31,7 +31,9 @@ apt-get install -y \
 	php-mysql \
 	>/dev/null 2>&1
 rm /etc/php/7.0/fpm/php.ini
+rm /etc/php/7.0/fpm/pool.d/www.conf
 ln -s /vagrant/scripts/php.ini /etc/php/7.0/fpm/php.ini
+ln -s /vagrant/scripts/www.conf /etc/php/7.0/fpm/pool.d/www.conf
 service php7.0-fpm restart
 
 echo "Installing WP-CLI"
