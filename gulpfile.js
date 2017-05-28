@@ -30,6 +30,7 @@ var gulp			= require( 'gulp' ),
  * Directories
  */
 var dist			= __dirname + '/dist',
+	src				= __dirname + '/src',
 	project			= 'wp-framework';
 
 
@@ -78,27 +79,18 @@ gulp.task( 'copy-config', function() {
 	/** wp-config.php */
 
 	streams.push(
-		gulp.src( __dirname + '/src/wp-config/global.php' )
-			.pipe( rename( 'wp-config.php' ) )
+		gulp.src( __dirname + '/src/wp-config.php' )
 			.pipe( gulp.dest( __dirname + '/dist' ) )
 	);
 
 	/** wp-config-local.php */
 
-	var environment = 'development';
+	streams.push(
+		gulp.src( __dirname + '/src/wp-config-local.php' )
+			.pipe( gulp.dest( __dirname + '/dist' ) )
+	);
 
-	if ( argv.prod || argv.production ) {
-
-		environment = 'production';
-
-	} else if ( argv.stage || argv.staging ) {
-
-		environment = 'staging';
-	}
-
-	return gulp.src( __dirname + '/src/wp-config/' + environment + '.php' )
-		.pipe( rename( 'wp-config-local.php' ) )
-		.pipe( gulp.dest( __dirname + '/dist' ) )
+	return merge( streams );
 });
 
 
@@ -139,7 +131,7 @@ gulp.task( 'uploads', function() {
  * Process Sass into unminified CSS with a sourcemap and minified CSS without
  * a sourcemap.
  */
-gulp.task( 'css', [ 'css:unminified', 'css:minified' ] );
+gulp.task( 'css', [ 'css:unminified', 'css:minified', 'css:styleguide' ] );
 
 gulp.task( 'css:unminified', function() {
 
@@ -149,7 +141,11 @@ gulp.task( 'css:unminified', function() {
 	// Unminified, sourcemapped
 
 	return gulp.src( src )
-		.pipe( plumber() )
+		.pipe( plumber( function( err ) {
+			gutil.beep();
+			var errorText = err.message + "\n\n" + err.source;
+			gutil.log( gutil.colors.red( errorText ) );
+		}))
 		.pipe( sourcemaps.init() )
 		.pipe( sass.sync() )
 		.pipe( postcss([
@@ -180,6 +176,23 @@ gulp.task( 'css:minified', function() {
 		.pipe( gulp.dest( dest ) );
 });
 
+gulp.task( 'css:styleguide', () => {
+
+	var src		= __dirname + '/src/sass',
+		dest	= __dirname + '/dist/styleguide',
+		css		= [
+			'https://fonts.googleapis.com/css?family=Oswald:500\\&subset=latin-ext',
+			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+			'/wp-content/themes/' + project + '/css/' + project + '.css'
+		];
+
+	return gulp.src( '', { read: false } )
+		.pipe( shell(
+			__dirname + '/node_modules/kss/bin/kss --source ' + src + ' --destination ' + dest + ' --css ' + css[0] + ' --css ' + css[1] + ' --css ' + css[2]
+		))
+		.pipe( livereload() );
+});
+
 
 /**
  * js
@@ -193,11 +206,7 @@ gulp.task( 'js:front-end', function() {
 	var src		= __dirname + '/src/js',
 		dest	= __dirname + '/dist/wp-content/themes/' + project + '/js';
 
-	return gulp.src([
-			src + '/front-end/navigation.js',
-			src + '/front-end/skip-link-focus-fix.js',
-			src + '/front-end/' + project + '.js'
-		])
+	return gulp.src( src + '/front-end/**/*.js' )
 		.pipe( plumber() )
 		.pipe( deporder() )
 		.pipe( concat( project + '.js' ) )
@@ -216,6 +225,8 @@ gulp.task( 'js:admin', function() {
 		dest	= __dirname + '/dist/wp-content/themes/' + project + '/js';
 
 	return gulp.src( src + '/admin/**/*.js' )
+		.pipe( plumber() )
+		.pipe( deporder() )
 		.pipe( concat( project + '-admin.js' ) )
 		.pipe( gulp.dest( dest ) )
 		.pipe( uglify() )
@@ -263,15 +274,15 @@ gulp.task( 'js:header', function() {
  * fonts
  * Copy the font files.
  */
-gulp.task( 'fonts', function() {
+// gulp.task( 'fonts', function() {
 
-	var src		= __dirname + '/src/fonts/**/*',
-		dest	= __dirname + '/dist/wp-content/themes/' + project + '/css/fonts';
+// 	var src		= __dirname + '/src/fonts/**/*',
+// 		dest	= __dirname + '/dist/wp-content/themes/' + project + '/css/fonts';
 
-	return gulp.src( src )
-		.pipe( gulp.dest( dest ) )
-		.pipe( livereload() );
-});
+// 	return gulp.src( src )
+// 		.pipe( gulp.dest( dest ) )
+// 		.pipe( livereload() );
+// });
 
 
 /**
@@ -326,7 +337,8 @@ gulp.task( 'default', function( callback ) {
 		'composer',
 		'copy-config',
 		'uploads',
-		[ 'css', 'js', 'theme', 'plugin', 'fonts' ],
+		// [ 'css', 'js', 'theme', 'plugin', 'fonts' ],
+		[ 'css', 'js', 'theme', 'plugin' ],
 		callback
 	);
 });
@@ -339,17 +351,19 @@ gulp.task( 'default', function( callback ) {
 gulp.task( 'watch', function() {
 
 	livereload.listen();
-	gulp.watch( __dirname + '/src/sass/**/*.scss', [ 'css' ] );
-	gulp.watch( __dirname + '/src/js/**/*.js', [ 'js' ] );
-	gulp.watch( __dirname + '/src/theme/**/*', [ 'theme' ] );
-	gulp.watch( __dirname + '/src/plugin/**/*', [ 'plugin' ] );
-	gulp.watch( __dirname + '/src/wp-config/*', [ 'copy-config' ] );
+	gulp.watch( src + '/sass/**/*.scss',	[ 'css' ] );
+	gulp.watch( src + '/js/**/*.js',		[ 'js' ] );
+	gulp.watch( src + '/theme/**/*',		[ 'theme' ] );
+	gulp.watch( src + '/plugin/**/*',		[ 'plugin' ] );
+	gulp.watch( src + '/wp-config/*',		[ 'copy-config' ] );
 });
 
 
 /**
  * deploy
  * Deploy application to AWS via CodeBuild.
+ *
+ * TODO!
  */
 gulp.task( 'deploy', function( callback ) {
 
