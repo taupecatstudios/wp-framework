@@ -271,21 +271,6 @@ gulp.task( 'js:header', function() {
 
 
 /**
- * fonts
- * Copy the font files.
- */
-// gulp.task( 'fonts', function() {
-
-// 	var src		= __dirname + '/src/fonts/**/*',
-// 		dest	= __dirname + '/dist/wp-content/themes/' + project + '/css/fonts';
-
-// 	return gulp.src( src )
-// 		.pipe( gulp.dest( dest ) )
-// 		.pipe( livereload() );
-// });
-
-
-/**
  * theme
  * Copy the theme files.
  */
@@ -337,7 +322,6 @@ gulp.task( 'default', function( callback ) {
 		'composer',
 		'copy-config',
 		'uploads',
-		// [ 'css', 'js', 'theme', 'plugin', 'fonts' ],
 		[ 'css', 'js', 'theme', 'plugin' ],
 		callback
 	);

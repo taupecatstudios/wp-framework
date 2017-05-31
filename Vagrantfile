@@ -51,4 +51,9 @@ Vagrant.configure("2") do |config|
     v.name = $hostname
   end
 
+  # Restart PHP and nginx after up to make sure symlinked config files are read
+  config.trigger.after [:up, :reload] do
+    run_remote "service php7.0-fpm restart && service nginx restart"
+  end
+
 end

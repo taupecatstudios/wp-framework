@@ -9,6 +9,7 @@ $db_user			= 'root';
 $db_password		= 'password';
 $db_host			= 'localhost';
 $wp_debug			= true;
+$table_prefix = 'mdds_wp_';
 
 if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
@@ -35,6 +36,5 @@ define( 'DB_NAME',          $db_name );
 define( 'DB_USER',          $db_user );
 define( 'DB_PASSWORD',      $db_password );
 define( 'DB_HOST',          $db_host );
-$table_prefix = 'mdds_wp_';
 
 define( 'WP_DEBUG', $wp_debug );
