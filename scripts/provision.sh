@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DB_NAME="wpframework_site_dev"
+
 apt-get update >/dev/null 2>&1
 apt-get dist-upgrade -y >/dev/null 2>&1
 
@@ -9,6 +11,7 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again p
 sudo apt-get -y install mariadb-server >/dev/null 2>&1
 mysql --user=root --password=password -e \
 	"GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+mysqladmin --user=root --password=password create database $DB_NAME
 
 echo "Installing nginx"
 apt-get install -y nginx >/dev/null 2>&1
