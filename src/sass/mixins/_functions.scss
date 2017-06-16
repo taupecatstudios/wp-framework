@@ -1,0 +1,14 @@
+@function rem( $target ) {
+
+	@return $target / $font__default-size * 1rem;
+}
+
+@function em( $target, $context ) {
+
+	@return $target / $context * 1em;
+}
+
+@function vw( $target, $context ) {
+
+	@return ( $target / $context * 100vw );
+}

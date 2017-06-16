@@ -1,0 +1,44 @@
+// Aspect ratio
+@mixin aspect-ratio( $percentage ) {
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		padding-top: $percentage;
+		width: 100%;
+	}
+
+	> .aspect-ratio-content {
+		bottom: 0;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+}
+
+// Horizontal and vertical centering using `transform: translate()`
+@mixin centering( $direction: 'both' ) {
+	position: absolute;
+
+	@if ( 'vertical' == $direction ) {
+		bottom: auto;
+		top: 50%;
+		transform: translateY( -50% );
+	}
+
+	@elseif ( 'horizontal' == $direction ) {
+		left: 50%;
+		right: auto;
+		transform: translateX( -50% );
+	}
+
+	@else {
+		bottom: auto;
+		left: 50%;
+		right: auto;
+		top: 50%;
+		transform: translate( -50%, -50% );
+	}
+}

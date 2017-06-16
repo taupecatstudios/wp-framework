@@ -1,0 +1,95 @@
+// Image Replacement
+// 
+// Replace text with a background image
+// 
+// <pre>%image-replacement {
+// 	background: {
+// 		position: center;
+// 		repeat: no-repeat;
+// 		size: contain;
+// 	}
+// 	overflow: hidden;
+// 	text-indent: 200%;
+// 	white-space: nowrap;
+// }
+// 
+// selector {
+//     @extend %image-replacement;
+// }</pre>
+// 
+// Styleguide Utilities - Image Replacement
+%image-replacement {
+	background: {
+		position: center;
+		repeat: no-repeat;
+		size: contain;
+	}
+	overflow: hidden;
+	text-indent: 200%;
+	white-space: nowrap;
+}
+
+// Clear UL Styling
+// 
+// Remove margins, padding, and list styles (bullets) from ULs
+// 
+// <pre>%clear-ul-styling {
+// 	list-style: none;
+// 	margin: 0;
+// 	padding: 0;
+// }
+// 
+// selector {
+//     @extend %clear-ul-styling;
+// }</pre>
+// 
+// Markup:
+// <ul class="clear-ul-styling">
+// 	<li>First list item</li>
+// 	<li>Second list item</li>
+// 	<li>Third list item</li>
+// </ul>
+// 
+// Styleguide Utilities - Clear UL Styling
+.clear-ul-styling,
+%clear-ul-styling {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+// Position Absolute
+// 
+// Make a child element (or pseudo-element) fill the entire space of the
+// parent via absolute positioning.
+// 
+// <pre>%position-absolute {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// 	bottom: 0;
+// 	left: 0;
+// }
+// 
+// selector {
+//     @extend %position-absolute;
+// }</pre>
+// 
+// Markup:
+// <div id="parent-element" style="position: relative; width: 420px; height: 200px; background-color: magenta;">
+// 	<div id="child-element" class="position-absolute" style="background-color: rgba( 0, 255, 255, 0.5 );">
+// 		This child element fills the parent element's entire space.<br/><br/>
+// 		The parent element has a magenta background, and the child element has a cyan background at
+// 		50% alpha, giving the combined elements a purplish color.
+// 	</div>
+// </div>
+// 
+// Styleguide Utilities - Position Absolute
+.position-absolute,
+%position-absolute {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}

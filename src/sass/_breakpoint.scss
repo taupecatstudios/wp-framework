@@ -1,0 +1,15 @@
+@import "../../node_modules/breakpoint-sass/stylesheets/breakpoint";
+
+@include breakpoint-set( 'to ems', true );
+
+$breakpoints: (
+	'sm':		320px,
+	'md':		768px,
+	'lg':		1024px
+);
+
+
+@function get_breakpoint( $keyword ) {
+
+	@return map-get( $breakpoints, $keyword );
+}
