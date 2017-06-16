@@ -18,15 +18,24 @@
 // }</pre>
 // 
 // Styleguide Utilities - Image Replacement
+.image-replacement,
 %image-replacement {
 	background: {
 		position: center;
 		repeat: no-repeat;
 		size: contain;
 	}
+	display: block;
 	overflow: hidden;
 	text-indent: 200%;
 	white-space: nowrap;
+
+	&::before {
+		text: {
+			align: center;
+			indent: 0;
+		}
+	}
 }
 
 // Clear UL Styling
