@@ -11,7 +11,7 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again p
 sudo apt-get -y install mariadb-server >/dev/null 2>&1
 mysql --user=root --password=password -e \
 	"GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES;"
-mysqladmin --user=root --password=password create database $DB_NAME
+mysqladmin --user=root --password=password create $DB_NAME
 
 echo "Installing nginx"
 apt-get install -y nginx >/dev/null 2>&1
