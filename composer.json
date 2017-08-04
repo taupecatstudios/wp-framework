@@ -88,7 +88,11 @@
     "wpackagist-plugin/development-environment-notification": "*",
     "wpackagist-plugin/reset-wp": "*",
     "wpackagist-plugin/wp-log-viewer": "*",
-    "wpackagist-plugin/local-development": "*"
+    "wpackagist-plugin/local-development": "*",
+    "deliciousbrains/wp-migrate-db-pro": "*",
+    "deliciousbrains/wp-migrate-db-pro-media-files": "*",
+    "deliciousbrains/wp-migrate-db-pro-cli": "*",
+    "advanced-custom-fields/advanced-custom-fields-pro": "*"
   },
   "license": "MIT",
   "authors": [

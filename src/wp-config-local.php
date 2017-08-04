@@ -9,7 +9,7 @@ $db_user			= 'root';
 $db_password		= 'password';
 $db_host			= 'localhost';
 $wp_debug			= true;
-$table_prefix = 'mdds_wp_';
+$table_prefix		= 'wpframework_wp_';
 
 if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
@@ -17,7 +17,7 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
 		// Keep the defaults
 
-	// } elseif ( preg_match( '/staging/', $_SERVER['HTTP_HOST'] ) ) {
+	// } elseif ( preg_match( '/taupedev/', $_SERVER['HTTP_HOST'] ) ) {
 
 	// } else {
 
