@@ -39,6 +39,11 @@ ln -s /vagrant/scripts/php.ini /etc/php/7.0/fpm/php.ini
 ln -s /vagrant/scripts/www.conf /etc/php/7.0/fpm/pool.d/www.conf
 service php7.0-fpm restart
 
+echo "Installing PHPUnit"
+wget https://phar.phpunit.de/phpunit.phar
+chmod +x phpunit.phar
+mv phpunit.phar /usr/local/bin/phpunit
+
 echo "Installing WP-CLI"
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar >/dev/null 2>&1
 chmod +x wp-cli.phar >/dev/null 2>&1
