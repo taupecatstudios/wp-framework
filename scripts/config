@@ -4,4 +4,10 @@ source variables.bash
 
 # Go through the files that have variables that need replacing and, well, replace them.
 
-sed -i -e 's/##URL##/$URL/g' ./https.bash
+sed -i '' -e "s/##URL##/$URL/g"						./https.bash
+sed -i '' -e "s/##URL##/$URL/g"						./https.conf
+sed -i '' -e "s/##URL##/$URL/g"						./nginx.conf
+sed -i '' -e "s/##DB_NAME##/$DB_NAME/g"				./provision.sh
+sed -i '' -e "s/##URL##/$URL/g"						../Vagrantfile
+sed -i '' -e "s/##HOSTNAME##/$HOSTNAME/g"			../Vagrantfile
+sed -i '' -e "s/##IP_ADDRESS##/$IP_ADDRESS/g"		../Vagrantfile
