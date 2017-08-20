@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source variables.bash
+
+# Go through the files that have variables that need replacing and, well, replace them.
+
+sed -i -e 's/##URL##/$URL/g' ./https.bash

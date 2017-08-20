@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
-DB_NAME="wpframework_site_dev"
+DB_NAME="##DB_NAME##"
 
 apt-get update >/dev/null 2>&1
 apt-get dist-upgrade -y >/dev/null 2>&1
 
+echo "Enabling HTTPS"
+bash /vagrant/scripts/https.bash >/dev/null 2>&1
+
 echo "Installing MariaDB"
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password password' >/dev/null 2>&1
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password' >/dev/null 2>&1
-sudo apt-get -y install mariadb-server >/dev/null 2>&1
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password password' >/dev/null 2>&1
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password' >/dev/null 2>&1
+apt-get -y install mariadb-server >/dev/null 2>&1
 mysql --user=root --password=password -e \
 	"GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 mysqladmin --user=root --password=password create $DB_NAME
@@ -16,7 +19,7 @@ mysqladmin --user=root --password=password create $DB_NAME
 echo "Installing nginx"
 apt-get install -y nginx >/dev/null 2>&1
 rm /etc/nginx/sites-enabled/default >/dev/null 2>&1
-ln -s /vagrant/scripts/nginx /etc/nginx/sites-enabled/default >/dev/null 2>&1
+ln -s /vagrant/scripts/nginx.conf /etc/nginx/sites-enabled/default >/dev/null 2>&1
 sed -i 's/www-data/ubuntu/' /etc/nginx/nginx.conf >/dev/null 2>&1
 sed -i 's/www-data/ubuntu/' /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
 
