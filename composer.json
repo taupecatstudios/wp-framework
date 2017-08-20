@@ -1,6 +1,6 @@
 {
-  "name": "wp-framework/wp-framework-site",
-  "description": "Base WordPress local development environment",
+  "name": "##PROJECT##/##HOSTNAME##",
+  "description": "##DESCRIPTION##",
   "type": "project",
   "repositories": [
     {
@@ -55,7 +55,7 @@
       "type": "package",
       "package": {
         "name": "advanced-custom-fields/advanced-custom-fields-pro",
-        "version": "5.6.0",
+        "version": "5.6.1",
         "type": "wordpress-plugin",
         "dist": {
           "type": "zip",
@@ -79,16 +79,10 @@
   ],
   "require": {
     "johnpbloch/wordpress": "*",
-    "wpackagist-plugin/developer": "*",
     "wpackagist-plugin/debug-bar": "*",
     "wpackagist-plugin/akismet": "*",
     "wpackagist-plugin/theme-check": "*",
-    "wpackagist-plugin/query-monitor": "*",
-    "wpackagist-plugin/debug-meta-data": "*",
-    "wpackagist-plugin/development-environment-notification": "*",
-    "wpackagist-plugin/reset-wp": "*",
     "wpackagist-plugin/wp-log-viewer": "*",
-    "wpackagist-plugin/local-development": "*",
     "deliciousbrains/wp-migrate-db-pro": "*",
     "deliciousbrains/wp-migrate-db-pro-media-files": "*",
     "deliciousbrains/wp-migrate-db-pro-cli": "*",
