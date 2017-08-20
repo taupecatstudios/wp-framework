@@ -11,3 +11,8 @@ sed -i '' -e "s/##DB_NAME##/$DB_NAME/g"				./provision.sh
 sed -i '' -e "s/##URL##/$URL/g"						../Vagrantfile
 sed -i '' -e "s/##HOSTNAME##/$HOSTNAME/g"			../Vagrantfile
 sed -i '' -e "s/##IP_ADDRESS##/$IP_ADDRESS/g"		../Vagrantfile
+sed -i '' -e "s/##PROJECT##/$PROJECT/g"				../gulpfile.js
+sed -i '' -e "s/##PROJECT##/$PROJECT/g"				../package.json
+sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"		../package.json
+sed -i '' -e "s/##PROJECT##/$PROJECT/g"				../composer.json
+sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"		../composer.json
