@@ -64,7 +64,7 @@ gulp.task( 'composer', function() {
 
 /**
  * copy-config
- * Copy wp-config.php and wp-config-local.php to web/.
+ * Copy various config and other files to web/.
  */
 gulp.task( 'copy-config', function() {
 
@@ -88,6 +88,13 @@ gulp.task( 'copy-config', function() {
 
 	streams.push(
 		gulp.src( paths.src + '/wp-config-local.php' )
+			.pipe( gulp.dest( paths.web ) )
+	);
+
+	/** pantheon.yaml */
+
+	streams.push(
+		gulp.src( paths.src + '/pantheon.yml' )
 			.pipe( gulp.dest( paths.web ) )
 	);
 
