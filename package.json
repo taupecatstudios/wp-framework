@@ -1,7 +1,7 @@
 {
   "name": "wp-framework",
   "version": "1.0.0",
-  "description": "The foundation of WordPress projects.",
+  "description": "The foundation for WordPress projects.",
   "main": "gulpfile.js",
   "dependencies": {
     "breakpoint-sass": "^2.7.1",

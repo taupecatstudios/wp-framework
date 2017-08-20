@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$private_ip       = '192.168.33.10'
-$hostname         = 'wp-framework-site'
-$hostname_alias   = 'wp-framework.local'
+$private_ip       = '##IP_ADDRESS##'
+$hostname         = '##HOSTNAME##'
+$hostname_alias   = '##URL##'
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for

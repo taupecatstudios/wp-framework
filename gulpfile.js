@@ -31,7 +31,7 @@ var gulp			= require( 'gulp' ),
  */
 var dist			= __dirname + '/dist',
 	src				= __dirname + '/src',
-	project			= 'wp-framework';
+	project			= '##PROJECT##';
 
 
 /**
