@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-DB_NAME="##DB_NAME##"
+source ./variables
+./config
 
 apt-get update >/dev/null 2>&1
 apt-get dist-upgrade -y >/dev/null 2>&1
