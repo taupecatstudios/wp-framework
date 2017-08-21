@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-source ./variables
-./config
-
 apt-get update >/dev/null 2>&1
 apt-get dist-upgrade -y >/dev/null 2>&1
+apt-get install npm -y >/dev/null 2>&1
 
 echo "Enabling HTTPS"
 bash /vagrant/scripts/https.bash >/dev/null 2>&1
@@ -55,3 +53,10 @@ mv wp-cli.phar /usr/bin/wp >/dev/null 2>&1
 
 echo "Reloading nginx configuration"
 service nginx reload >/dev/null 2>&1
+
+echo "A few final tweaks"
+printf "\ncd /vagrant/web" >> ~ubuntu/.bashrc
+cd /vagrant
+npm install -g gulp
+sudo -u ubuntu npm install
+sudo -u ubuntu gulp
