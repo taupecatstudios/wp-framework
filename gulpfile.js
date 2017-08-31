@@ -42,7 +42,10 @@ var paths = {
  */
 gulp.task( 'clean', function() {
 
-	return del( paths.web ).then( paths => {
+	return del( [
+		paths.web + '/wp-content/themes/' + paths.project,
+		paths.web + '/wp-content/mu-plugins/' + paths.project
+	] ).then( paths => {
 
 		if ( 0 < paths.length ) {
 
