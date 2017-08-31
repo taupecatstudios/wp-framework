@@ -91,13 +91,6 @@ gulp.task( 'copy-config', function() {
 			.pipe( gulp.dest( paths.web ) )
 	);
 
-	/** pantheon.yaml */
-
-	streams.push(
-		gulp.src( paths.src + '/pantheon.yml' )
-			.pipe( gulp.dest( paths.web ) )
-	);
-
 	return merge( streams );
 });
 

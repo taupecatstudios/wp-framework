@@ -60,9 +60,6 @@ Thumbs.db
 # Composer Packages
 /vendor
 
-# Distribution Directory
-/dist
-
 # Vagrant
 /.vagrant
 /ubuntu-xenial-16.04-cloudimg-console.log
@@ -76,3 +73,5 @@ Thumbs.db
 
 # Misc
 /.env
+/scripts/taupecat.pem
+/scripts/taupecat.key
