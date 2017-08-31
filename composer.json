@@ -11,7 +11,7 @@
         "version": "1.7.2",
         "dist": {
           "type": "zip",
-          "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-latest.zip?licence_key=[insert license key here]&site_url=composer-test.dev"
+          "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-latest.zip?licence_key=##WP_MIGRATE_DB_PRO_LICENSE##&site_url=composer-test.dev"
         },
         "require": {
           "composer/installers": "v1.0.7",
@@ -27,7 +27,7 @@
         "version": "1.4.7",
         "dist": {
           "type": "zip",
-          "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-media-files-latest.zip?licence_key=[insert license key here]&site_url=composer-test.dev"
+          "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-media-files-latest.zip?licence_key=##WP_MIGRATE_DB_PRO_LICENSE##&site_url=composer-test.dev"
         },
         "require": {
           "composer/installers": "v1.0.7",
@@ -43,7 +43,7 @@
         "version": "1.3",
         "dist": {
           "type": "zip",
-          "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-cli-latest.zip?licence_key=[insert license key here]&site_url=composer-test.dev"
+          "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-cli-latest.zip?licence_key=##WP_MIGRATE_DB_PRO_LICENSE##&site_url=composer-test.dev"
         },
         "require": {
           "composer/installers": "v1.0.7",

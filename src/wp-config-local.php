@@ -2,14 +2,14 @@
 
 // Set the default (local)
 
-$hostname			= 'wp-framework.local';
+$hostname			= '##URL##';
 $scheme				= 'https://';
-$db_name			= 'wpframework_site_dev';
+$db_name			= '##DB_NAME##';
 $db_user			= 'root';
 $db_password		= 'password';
 $db_host			= 'localhost';
 $wp_debug			= true;
-$table_prefix		= 'wpframework_wp_';
+$table_prefix		= '##TABLE_PREFIX##';
 
 if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
@@ -17,9 +17,13 @@ if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 
 		// Keep the defaults
 
-	// } elseif ( preg_match( '/taupedev/', $_SERVER['HTTP_HOST'] ) ) {
+	} elseif ( preg_match( '/taupedev/', $_SERVER['HTTP_HOST'] ) ) {
 
-	// } else {
+		// Make adjustments for the staging environment
+
+	} else {
+
+		// Make adjustments for the production environment
 
 	}
 }
@@ -37,4 +41,4 @@ define( 'DB_USER',          $db_user );
 define( 'DB_PASSWORD',      $db_password );
 define( 'DB_HOST',          $db_host );
 
-define( 'WP_DEBUG', $wp_debug );
+define( 'WP_DEBUG',			$wp_debug );

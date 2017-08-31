@@ -4,15 +4,31 @@ source variables.bash
 
 # Go through the files that have variables that need replacing and, well, replace them.
 
-sed -i '' -e "s/##PROJECT##/$PROJECT/g"				./https.bash
-sed -i '' -e "s/##URL##/$URL/g"						./https.conf
-sed -i '' -e "s/##URL##/$URL/g"						./nginx.conf
-sed -i '' -e "s/##DB_NAME##/$DB_NAME/g"				./provision.sh
-sed -i '' -e "s/##URL##/$URL/g"						../Vagrantfile
-sed -i '' -e "s/##HOSTNAME##/$HOSTNAME/g"			../Vagrantfile
-sed -i '' -e "s/##IP_ADDRESS##/$IP_ADDRESS/g"		../Vagrantfile
-sed -i '' -e "s/##PROJECT##/$PROJECT/g"				../gulpfile.js
-sed -i '' -e "s/##PROJECT##/$PROJECT/g"				../package.json
-sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"		../package.json
-sed -i '' -e "s/##PROJECT##/$PROJECT/g"				../composer.json
-sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"		../composer.json
+sed -i '' -e "s/##URL##/$URL/g"													./https.bash
+
+sed -i '' -e "s/##URL##/$URL/g"													./https.conf
+
+sed -i '' -e "s/##URL##/$URL/g"													./nginx.conf
+
+sed -i '' -e "s/##DB_NAME##/$DB_NAME/g"											./provision.sh
+
+sed -i '' -e "s/##URL##/$URL/g"													../Vagrantfile
+sed -i '' -e "s/##HOSTNAME##/$HOSTNAME/g"										../Vagrantfile
+sed -i '' -e "s/##IP_ADDRESS##/$IP_ADDRESS/g"									../Vagrantfile
+
+sed -i '' -e "s/##PROJECT##/$PROJECT/g"											../gulpfile.js
+
+sed -i '' -e "s/##PROJECT##/$PROJECT/g"											../package.json
+sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"									../package.json
+
+sed -i '' -e "s/##PROJECT##/$PROJECT/g"											../composer.json
+sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"									../composer.json
+sed -i '' -e "s/##WP_MIGRATE_DB_PRO_LICENSE##/$WP_MIGRATE_DB_PRO_LICENSE/g"		../composer.json
+
+sed -i '' -e "s/##TABLE_PREFIX##/$TABLE_PREFIX/g"								../src/wp-config-local.php
+sed -i '' -e "s/##URL##/$URL/g"													../src/wp-config-local.php
+sed -i '' -e "s/##DB_NAME##/$DB_NAME/g"											../src/wp-config-local.php
+
+sed -i '' -e "s/##MERGEBOT_LICENSE##/$MERGEBOT_LICENSE/g"						../src/wp-config.php
+sed -i '' -e "s/##PRODUCTION_URL##/$PRODUCTION_URL/g"							../src/wp-config.php
+sed -i '' -e "s/##TABLE_PREFIX##/$TABLE_PREFIX/g"								../src/wp-config.php

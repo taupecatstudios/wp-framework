@@ -217,7 +217,7 @@ gulp.task( 'js:front-end', function() {
 	return gulp.src( src + '/front-end/**/*.js' )
 		.pipe( plumber() )
 		.pipe( deporder() )
-		.pipe( concat( project + '.js' ) )
+		.pipe( concat( paths.project + '.js' ) )
 		.pipe( gulp.dest( dest ) )
 		.pipe( uglify() )
 		.pipe( rename({
@@ -235,7 +235,7 @@ gulp.task( 'js:admin', function() {
 	return gulp.src( src + '/admin/**/*.js' )
 		.pipe( plumber() )
 		.pipe( deporder() )
-		.pipe( concat( project + '-admin.js' ) )
+		.pipe( concat( paths.project + '-admin.js' ) )
 		.pipe( gulp.dest( dest ) )
 		.pipe( uglify() )
 		.pipe( rename({
@@ -250,7 +250,7 @@ gulp.task( 'js:plugins', function() {
 		dest	= paths.web + '/wp-content/themes/' + paths.project + '/js';
 
 	return gulp.src( src + '/plugins/**/*.js' )
-		.pipe( concat( project + '-plugins.js' ) )
+		.pipe( concat( paths.project + '-plugins.js' ) )
 		.pipe( gulp.dest( dest ) )
 		.pipe( uglify() )
 		.pipe( rename({
@@ -267,7 +267,7 @@ gulp.task( 'js:header', function() {
 	return gulp.src( src + '/header/**/*' )
 		.pipe( plumber() )
 		.pipe( deporder() )
-		.pipe( concat( project + '-header.js' ) )
+		.pipe( concat( paths.project + '-header.js' ) )
 		.pipe( gulp.dest( dest ) )
 		.pipe( uglify() )
 		.pipe( rename({
@@ -307,12 +307,12 @@ gulp.task( 'plugin', function() {
 
 	// Build the loader files, using mu-plugin.php as a template
 
-	src		= __dirname + '/src/' + project + '/plugin';
-	dest	= __dirname + '/dist/wp-content/mu-plugins';
+	src		= paths.src + '/' + paths.project + '/plugin';
+	dest	= paths.web + '/wp-content/mu-plugins';
 
-	return gulp.src([ __dirname + '/src/mu-plugin.php' ])
-		.pipe( rename( project + '.php' ) )
-		.pipe( gulp.dest( __dirname + '/dist/wp-content/mu-plugins' ) )
+	return gulp.src([ paths.src + '/mu-plugin.php' ])
+		.pipe( rename( paths.project + '.php' ) )
+		.pipe( gulp.dest( dest ) )
 		.pipe( livereload() );
 });
 
