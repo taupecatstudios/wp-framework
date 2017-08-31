@@ -14,8 +14,7 @@
           "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-latest.zip?licence_key=##WP_MIGRATE_DB_PRO_LICENSE##&site_url=composer-test.dev"
         },
         "require": {
-          "composer/installers": "v1.0.7",
-          "johnpbloch/wordpress": "*"
+          "composer/installers": "v1.0.7"
         }
       }
     },
@@ -30,8 +29,7 @@
           "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-media-files-latest.zip?licence_key=##WP_MIGRATE_DB_PRO_LICENSE##&site_url=composer-test.dev"
         },
         "require": {
-          "composer/installers": "v1.0.7",
-          "johnpbloch/wordpress": "*"
+          "composer/installers": "v1.0.7"
         }
       }
     },
@@ -46,8 +44,7 @@
           "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-cli-latest.zip?licence_key=##WP_MIGRATE_DB_PRO_LICENSE##&site_url=composer-test.dev"
         },
         "require": {
-          "composer/installers": "v1.0.7",
-          "johnpbloch/wordpress": "*"
+          "composer/installers": "v1.0.7"
         }
       }
     },
@@ -63,8 +60,7 @@
         },
         "require": {
           "philippbaschke/acf-pro-installer": "^1.0",
-          "composer/installers": "^1.0",
-          "johnpbloch/wordpress": "*"
+          "composer/installers": "^1.0"
         }
       }
     },
@@ -78,7 +74,6 @@
     }
   ],
   "require": {
-    "johnpbloch/wordpress": "*",
     "wpackagist-plugin/debug-bar": "*",
     "wpackagist-plugin/akismet": "*",
     "wpackagist-plugin/theme-check": "*",
@@ -97,10 +92,9 @@
   ],
   "minimum-stability": "stable",
   "extra": {
-    "wordpress-install-dir": "dist/_wp",
     "installer-paths": {
-      "dist/wp-content/plugins/{$name}": ["type:wordpress-plugin"],
-      "dist/wp-content/themes/{$name}": ["type:wordpress-theme"]
+      "web/wp-content/plugins/{$name}": ["type:wordpress-plugin"],
+      "web/wp-content/themes/{$name}": ["type:wordpress-theme"]
     }
   }
 }
