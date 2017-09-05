@@ -10,8 +10,8 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password password pas
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password' >/dev/null 2>&1
 apt-get -y install mariadb-server >/dev/null 2>&1
 mysql --user=root --password=password -e \
-	"GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES;" 2>&1
-mysqladmin --user=root --password=password create $DB_NAME 2>&1
+	"GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES;" >/dev/null 2>&1
+mysqladmin --user=root --password=password create $DB_NAME >/dev/null 2>&1
 
 echo "Installing nginx"
 apt-get install -y nginx >/dev/null 2>&1
@@ -33,16 +33,16 @@ apt-get install -y \
 	php-mbstring \
 	php-mysql \
 	>/dev/null 2>&1
-rm /etc/php/7.0/fpm/php.ini 2>&1
-rm /etc/php/7.0/fpm/pool.d/www.conf 2>&1
-ln -s /vagrant/scripts/php.ini /etc/php/7.0/fpm/php.ini 2>&1
-ln -s /vagrant/scripts/www.conf /etc/php/7.0/fpm/pool.d/www.conf 2>&1
-service php7.0-fpm restart 2>&1
+rm /etc/php/7.0/fpm/php.ini >/dev/null 2>&1
+rm /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
+ln -s /vagrant/scripts/php.ini /etc/php/7.0/fpm/php.ini >/dev/null 2>&1
+ln -s /vagrant/scripts/www.conf /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
+service php7.0-fpm restart >/dev/null 2>&1
 
 echo "Installing PHPUnit"
-wget https://phar.phpunit.de/phpunit.phar 2>&1
-chmod +x phpunit.phar 2>&1
-mv phpunit.phar /usr/local/bin/phpunit 2>&1
+wget https://phar.phpunit.de/phpunit.phar >/dev/null 2>&1
+chmod +x phpunit.phar >/dev/null 2>&1
+mv phpunit.phar /usr/local/bin/phpunit >/dev/null 2>&1
 
 echo "Installing WP-CLI"
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar >/dev/null 2>&1
