@@ -2,11 +2,11 @@
 
 # Copy some stuff over
 
-aws --profile taupecat cp s3://taupecat-studios/taupecat.pem					./
-aws --profile taupecat cp s3://taupecat-studios/taupecat.key					./
-aws --profile taupecat cp s3://taupecat-studios/licenses.bash					./
-aws --profile taupecat cp s3://taupecat-studios/.env							../
-aws --profile taupecat cp s3://taupecat-studios/prepare-commit-msg				../.git/hooks/
+aws --profile taupecat s3 cp s3://taupecat-studios/taupecat.pem ./
+aws --profile taupecat s3 cp s3://taupecat-studios/taupecat.key ./
+aws --profile taupecat s3 cp s3://taupecat-studios/licenses.bash ./
+aws --profile taupecat s3 cp s3://taupecat-studios/.env ../
+aws --profile taupecat s3 cp s3://taupecat-studios/prepare-commit-msg ../.git/hooks/
 
 # Go through the files that have variables that need replacing and, well, replace them.
 
