@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: WP Framework
+ * Plugin Name: ##PROJECT_NAME##
  * Description: Custom post type definitions and other custom functionality.
  */
 
-require_once dirname( __FILE__ ) . '/wp-framework/wp-framework.php';
+require_once dirname( __FILE__ ) . '/##PROJECT##/##PROJECT##.php';
