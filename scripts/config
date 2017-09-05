@@ -1,8 +1,17 @@
 #!/bin/bash
 
-source variables.bash
+# Copy some stuff over
+
+aws --profile taupecat cp s3://taupecat-studios/taupecat.pem					./
+aws --profile taupecat cp s3://taupecat-studios/taupecat.key					./
+aws --profile taupecat cp s3://taupecat-studios/licenses.bash					./
+aws --profile taupecat cp s3://taupecat-studios/.env							../
+aws --profile taupecat cp s3://taupecat-studios/prepare-commit-msg				../.git/hooks/
 
 # Go through the files that have variables that need replacing and, well, replace them.
+
+source variables.bash
+source licenses.bash
 
 sed -i '' -e "s/##URL##/$URL/g"													./https.bash
 
@@ -24,6 +33,7 @@ sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"									../package.json
 sed -i '' -e "s/##PROJECT##/$PROJECT/g"											../composer.json
 sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"									../composer.json
 sed -i '' -e "s/##WP_MIGRATE_DB_PRO_LICENSE##/$WP_MIGRATE_DB_PRO_LICENSE/g"		../composer.json
+sed -i '' -e "s/##HOSTNAME##/$HOSTNAME/g"										../composer.json
 
 sed -i '' -e "s/##TABLE_PREFIX##/$TABLE_PREFIX/g"								../src/wp-config-local.php
 sed -i '' -e "s/##URL##/$URL/g"													../src/wp-config-local.php
