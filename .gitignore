@@ -1,16 +1,16 @@
 # WordPress #
 ############
-wp-config-local.php
+web/wp-config-local.php
 wp-cli.local.yml
-wp-content/uploads
-wp-content/blogs.dir/
-wp-content/upgrade/
-wp-content/backup-db/
-wp-content/updraft/
-wp-content/backupwordpress-*/
-wp-content/managewp/backups/
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
+web/wp-content/uploads
+web/wp-content/blogs.dir/
+web/wp-content/upgrade/
+web/wp-content/backup-db/
+web/wp-content/updraft/
+web/wp-content/backupwordpress-*/
+web/wp-content/managewp/backups/
+web/wp-content/advanced-cache.php
+web/wp-content/wp-cache-config.php
 sitemap.xml
 sitemap.xml.gz
 *.log
