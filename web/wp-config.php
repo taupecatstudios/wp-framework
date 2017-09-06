@@ -23,6 +23,10 @@ if (file_exists(dirname(__FILE__) . '/wp-config-local.php') && !isset($_ENV['PAN
  * Pantheon platform settings. Everything you need should already be set.
  */
 else:
+
+  define( 'MERGEBOT_API_KEY', '##MERGEBOT_LICENSE##' );
+  define( 'MERGEBOT_PLUGIN_MODE', 'production' );
+
   if (isset($_ENV['PANTHEON_ENVIRONMENT'])):
     // ** MySQL settings - included in the Pantheon Environment ** //
     /** The name of the database for WordPress */
@@ -66,18 +70,6 @@ else:
     /**#@-*/
 
     /** A couple extra tweaks to help things run well on Pantheon. **/
-    if (isset($_SERVER['HTTP_HOST'])) {
-        // HTTP is still the default scheme for now. 
-        $scheme = 'http';
-        // If we have detected that the end use is HTTPS, make sure we pass that
-        // through here, so <img> tags and the like don't generate mixed-mode
-        // content warnings.
-        if (isset($_SERVER['HTTP_USER_AGENT_HTTPS']) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON') {
-            $scheme = 'https';
-        }
-        define('WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST']);
-        define('WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST']);
-    }
     // Don't show deprecations; useful under PHP 5.5
     error_reporting(E_ALL ^ E_DEPRECATED);
     // Force the use of a safe temp directory when in a container
@@ -91,7 +83,7 @@ else:
     endif;
 
     // Make sure Jetpack is always in debug mode on dev and test
-    if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'dev', 'test' ) ) ) && ! defined( 'JETPACK_DEV_DEBUG' ) ) :
+    if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'dev', 'test' ) ) && ! defined( 'JETPACK_DEV_DEBUG' ) ) :
         define( 'JETPACK_DEV_DEBUG', true );
     endif;
 
@@ -119,6 +111,34 @@ else:
   endif;
 endif;
 
+if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
+  // Redirect to https://$primary_domain/ in the Live environment
+  if ($_ENV['PANTHEON_ENVIRONMENT'] === 'live') {
+    /** Replace www.example.com with your registered domain name */
+    $primary_domain = '##PRODUCTION_URL##';
+  }
+  else {
+    // Redirect to HTTPS on every Pantheon environment.
+    $primary_domain = $_SERVER['HTTP_HOST'];
+  }
+  $base_url = 'https://'. $primary_domain;
+  define('WP_SITEURL', $base_url);
+  define('WP_HOME', $base_url);
+  if ($_SERVER['HTTP_HOST'] != $primary_domain
+      || !isset($_SERVER['HTTP_X_SSL'])
+      || $_SERVER['HTTP_X_SSL'] != 'ON' ) {
+
+    # Name transaction "redirect" in New Relic for improved reporting (optional)
+    if (extension_loaded('newrelic')) {
+      newrelic_name_transaction("redirect");
+    }
+
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: '. $base_url . $_SERVER['REQUEST_URI']);
+    exit();
+  }
+}
+
 /** Standard wp-config.php stuff from here on down. **/
 
 /**
@@ -128,7 +148,7 @@ endif;
  * prefix. Only numbers, letters, and underscores please!
  */
 if ( ! isset( $table_prefix ) )
-  $table_prefix = 'wp_';
+  $table_prefix = '##TABLE_PREFIX##';
 
 /**
  * WordPress Localized Language, defaults to English.
@@ -162,10 +182,11 @@ if ( WP_DEBUG ) {
   }
 }
 
+/** Miscellaneous */
+define( 'SUCURISCAN_HIDE_ADS', true );
+define( 'DISALLOW_FILE_EDIT', true );
+
 /* That's all, stop editing! Happy Pressing. */
-
-
-
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )

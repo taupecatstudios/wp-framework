@@ -83,7 +83,7 @@ else:
     endif;
 
     // Make sure Jetpack is always in debug mode on dev and test
-    if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'dev', 'test' ) ) ) && ! defined( 'JETPACK_DEV_DEBUG' ) ) :
+    if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'dev', 'test' ) ) && ! defined( 'JETPACK_DEV_DEBUG' ) ) :
         define( 'JETPACK_DEV_DEBUG', true );
     endif;
 
@@ -186,7 +186,7 @@ if ( WP_DEBUG ) {
 define( 'SUCURISCAN_HIDE_ADS', true );
 define( 'DISALLOW_FILE_EDIT', true );
 
-/* That's all, stop editing! Happy blogging. */
+/* That's all, stop editing! Happy Pressing. */
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
