@@ -122,7 +122,8 @@ endif;
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'wp_';
+if ( ! isset( $table_prefix ) )
+  $table_prefix = 'wp_';
 
 /**
  * WordPress Localized Language, defaults to English.
@@ -144,8 +145,13 @@ define('WPLANG', '');
  * You may want to examine $_ENV['PANTHEON_ENVIRONMENT'] to set this to be
  * "true" in dev, but false in test and live.
  */
-if ( ! defined( 'WP_DEBUG' ) ) {
-    define('WP_DEBUG', false);
+if ( ! defined( 'WP_DEBUG' ) )
+  define( 'WP_DEBUG', false );
+
+if ( WP_DEBUG ) {
+  define( 'WP_DEBUG_DISPLAY', false );
+  define( 'WP_DEBUG_LOG', true );
+  define( 'JETPACK_DEV_DEBUG', true );
 }
 
 /* That's all, stop editing! Happy Pressing. */

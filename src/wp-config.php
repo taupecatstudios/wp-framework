@@ -142,7 +142,8 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = '##TABLE_PREFIX##';
+if ( ! isset( $table_prefix ) )
+  $table_prefix = '##TABLE_PREFIX##';
 
 /**
  * WordPress Localized Language, defaults to English.
