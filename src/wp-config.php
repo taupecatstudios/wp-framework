@@ -82,6 +82,11 @@ else:
         define( 'DISALLOW_FILE_MODS', true );
     endif;
 
+    // Make sure Jetpack is always in debug mode on dev and test
+    if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'dev', 'test' ) ) ) && ! defined( 'JETPACK_DEV_DEBUG' ) ) :
+        define( 'JETPACK_DEV_DEBUG', true );
+    endif;
+
   else:
     /**
      * This block will be executed if you have NO wp-config-local.php and you
@@ -171,7 +176,10 @@ if ( ! defined( 'WP_DEBUG' ) )
 if ( WP_DEBUG ) {
 	define( 'WP_DEBUG_DISPLAY', false );
 	define( 'WP_DEBUG_LOG', true );
-	define( 'JETPACK_DEV_DEBUG', true );
+
+  if ( ! defined( 'JETPACK_DEV_DEBUG' ) ) {
+    define( 'JETPACK_DEV_DEBUG', true );
+  }
 }
 
 /** Miscellaneous */
