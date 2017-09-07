@@ -5,7 +5,6 @@ var gulp			= require( 'gulp' ),
 	composer		= require( 'gulp-composer' ),
 	del				= require( 'del' ),
 	merge			= require( 'merge-stream' ),
-	argv			= require( 'yargs' ).argv,
 	sass			= require( 'gulp-sass' ),
 	rename			= require( 'gulp-rename' ),
 	uglify			= require( 'gulp-uglify' ),
@@ -17,11 +16,7 @@ var gulp			= require( 'gulp' ),
 	plumber			= require( 'gulp-plumber' ),
 	gutil			= require( 'gulp-util' ),
 	sequence		= require( 'run-sequence' ),
-	replace			= require( 'gulp-replace' ),
-	gfs				= require( 'graceful-fs' ),
-	unzip			= require( 'gulp-unzip' ),
 	shell			= require( 'gulp-shell' ),
-	git				= require( 'gulp-git' ),
 	deporder		= require( 'gulp-deporder' ),
 	livereload		= require( 'gulp-livereload' );
 
@@ -67,18 +62,11 @@ gulp.task( 'composer', function() {
 
 /**
  * copy-config
- * Copy various config and other files to web/.
+ * Copy the wp-config* files to web/.
  */
 gulp.task( 'copy-config', function() {
 
 	var streams = [];
-
-	/** index.php (for WordPress in a subdirectory) */
-
-	streams.push(
-		gulp.src( paths.src + '/index.php' )
-			.pipe( gulp.dest( paths.web ) )
-	);
 
 	/** wp-config.php */
 
@@ -95,38 +83,6 @@ gulp.task( 'copy-config', function() {
 	);
 
 	return merge( streams );
-});
-
-
-/**
- * uploads
- * Link /uploads directory.
- */
-gulp.task( 'uploads', function() {
-
-	/** Only run in development */
-
-	if ( ! argv.prod && ! argv.production && ! argv.stage && ! argv.staging ) {
-
-		if ( ! gfs.existsSync( paths.web + '/wp-content/uploads' ) ) {
-
-			if ( ! gfs.existsSync( paths.web + '/wp-content' ) ) {
-
-				if ( ! gfs.existsSync( paths.web ) ) {
-
-					gfs.mkdirSync( paths.web );
-
-				}
-
-				gfs.mkdirSync( paths.web + '/wp-content' );
-			}
-
-			return gulp.src( __dirname )
-				.pipe( shell( 'ln -s ../../uploads web/wp-content/uploads' ) );
-		}
-	}
-
-	return false;
 });
 
 
@@ -184,15 +140,11 @@ gulp.task( 'css:styleguide', () => {
 
 	var src		= paths.src + '/sass',
 		dest	= paths.web + '/styleguide',
-		css		= [
-			'https://fonts.googleapis.com/css?family=Oswald:500\\&subset=latin-ext',
-			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-			'/wp-content/themes/' + paths.project + '/css/' + paths.project + '.css'
-		];
+		css		= '/wp-content/themes/' + paths.project + '/css/' + paths.project + '.css';
 
 	return gulp.src( '', { read: false } )
 		.pipe( shell(
-			__dirname + '/node_modules/kss/bin/kss --source ' + src + ' --destination ' + dest + ' --css ' + css[0] + ' --css ' + css[1] + ' --css ' + css[2]
+			__dirname + '/node_modules/kss/bin/kss --source ' + src + ' --destination ' + dest + ' --css ' + css
 		))
 		.pipe( livereload() );
 });
@@ -325,7 +277,6 @@ gulp.task( 'default', function( callback ) {
 	sequence(
 		'composer',
 		'copy-config',
-		'uploads',
 		[ 'css', 'js', 'theme', 'plugin' ],
 		callback
 	);
@@ -344,26 +295,4 @@ gulp.task( 'watch', function() {
 	gulp.watch( paths.src + '/theme/**/*',		[ 'theme' ] );
 	gulp.watch( paths.src + '/plugin/**/*',		[ 'plugin' ] );
 	gulp.watch( paths.src + '/wp-config/*',		[ 'copy-config' ] );
-});
-
-
-/**
- * deploy
- * Deploy application to AWS via CodeBuild.
- *
- * TODO!
- */
-gulp.task( 'deploy', function( callback ) {
-
-	if ( ( ! argv.stage ) && ( ! argv.staging ) ) {
-
-		// set argv to be prod by default if not already set to staging
-		argv.prod = true;
-	}
-
-	// run the default task
-	sequence(
-		'default',
-		callback
-	);
 });
