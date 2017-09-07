@@ -24,7 +24,7 @@ if (file_exists(dirname(__FILE__) . '/wp-config-local.php') && !isset($_ENV['PAN
  */
 else:
 
-  define( 'MERGEBOT_API_KEY', '##MERGEBOT_LICENSE##' );
+  define( 'MERGEBOT_API_KEY', '##MERGEBOT_API_KEY##' );
   define( 'MERGEBOT_PLUGIN_MODE', 'production' );
 
   if (isset($_ENV['PANTHEON_ENVIRONMENT'])):
