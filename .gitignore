@@ -75,3 +75,4 @@ Thumbs.db
 /.env
 /scripts/taupecat.pem
 /scripts/taupecat.key
+/scripts/licenses.bash
