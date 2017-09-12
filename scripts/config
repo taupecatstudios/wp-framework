@@ -45,4 +45,5 @@ sed -i '' -e "s/##TABLE_PREFIX##/$TABLE_PREFIX/g"								../src/wp-config.php
 
 sed -i '' -e "s/##PROJECT##/$PROJECT/g"											../src/mu-plugin.php
 sed -i '' -e "s/##PROJECT_NAME##/$PROJECT_NAME/g"								../src/mu-plugin.php
-mv ../src/plugin/wp-framework.php ../src/plugin/$PROJECT.php
+
+mv ../src/plugin/wp-framework.php												../src/plugin/$PROJECT.php
