@@ -18,7 +18,8 @@ var gulp			= require( 'gulp' ),
 	sequence		= require( 'run-sequence' ),
 	shell			= require( 'gulp-shell' ),
 	deporder		= require( 'gulp-deporder' ),
-	livereload		= require( 'gulp-livereload' );
+	jshint			= require( 'gulp-jshint' ),
+	refresh			= require( 'gulp-refresh' );
 
 
 /**
@@ -91,14 +92,18 @@ gulp.task( 'copy-config', function() {
  * Process Sass into unminified CSS with a sourcemap and minified CSS without
  * a sourcemap.
  */
-gulp.task( 'css', [ 'css:unminified', 'css:minified', 'css:styleguide' ] );
+gulp.task( 'css', [
+	'css:unminified',
+	'css:minified',
+	'css:editor'
+]);
+
+// Unminified, sourcemapped
 
 gulp.task( 'css:unminified', function() {
 
-	var src		= paths.src + '/sass/**/*.scss',
+	var src		= paths.src + '/sass/' + paths.project + '.scss',
 		dest	= paths.web + '/wp-content/themes/' + paths.project + '/css';
-
-	// Unminified, sourcemapped
 
 	return gulp.src( src )
 		.pipe( plumber( function( err ) {
@@ -107,25 +112,25 @@ gulp.task( 'css:unminified', function() {
 			gutil.log( gutil.colors.red( errorText ) );
 		}))
 		.pipe( sourcemaps.init() )
-		.pipe( sass.sync() )
+		.pipe( sass() )
 		.pipe( postcss([
 			autoprefixer()
 		]))
 		.pipe( sourcemaps.write() )
 		.pipe( gulp.dest( dest ) )
-		.pipe( livereload() );
+		.pipe( refresh() );
 });
+
+// Minified, not sourcemapped
 
 gulp.task( 'css:minified', function() {
 
-	var src		= paths.src + '/sass/**/*.scss',
+	var src		= paths.src + '/sass/' + paths.project + '.scss',
 		dest	= paths.web + '/wp-content/themes/' + paths.project + '/css';
-
-	// Minified, not sourcemapped
 
 	return gulp.src( src )
 		.pipe( plumber() )
-		.pipe( sass.sync() )
+		.pipe( sass() )
 		.pipe( postcss([
 			autoprefixer(),
 			csswring()
@@ -135,6 +140,28 @@ gulp.task( 'css:minified', function() {
 		}))
 		.pipe( gulp.dest( dest ) );
 });
+
+// Editor
+
+gulp.task( 'css:editor', function() {
+
+	var src		= paths.src + '/sass/' + paths.project + '-editor.scss',
+		dest	= paths.web + '/wp-content/themes/' + paths.project + '/css';
+
+	return gulp.src( src )
+		.pipe( plumber() )
+		.pipe( sass() )
+		.pipe( postcss([
+			autoprefixer(),
+			csswring()
+		]))
+		.pipe( rename({
+			suffix: '.min'
+		}))
+		.pipe( gulp.dest( dest ) );
+});
+
+// Styleguide
 
 gulp.task( 'css:styleguide', () => {
 
@@ -146,7 +173,7 @@ gulp.task( 'css:styleguide', () => {
 		.pipe( shell(
 			__dirname + '/node_modules/kss/bin/kss --source ' + src + ' --destination ' + dest + ' --css ' + css
 		))
-		.pipe( livereload() );
+		.pipe( refresh() );
 });
 
 
@@ -155,7 +182,12 @@ gulp.task( 'css:styleguide', () => {
  * Process custom front-end and admin JavaScript into a single concatenated file,
  * and an uglified version for production.
  */
-gulp.task( 'js', [ 'js:front-end', 'js:admin', 'js:plugins', 'js:header' ] );
+gulp.task( 'js', [
+	'js:front-end',
+	'js:admin',
+	'js:plugins',
+	'js:header'
+]);
 
 gulp.task( 'js:front-end', function() {
 
@@ -165,6 +197,8 @@ gulp.task( 'js:front-end', function() {
 	return gulp.src( src + '/front-end/**/*.js' )
 		.pipe( plumber() )
 		.pipe( deporder() )
+		.pipe( jshint() )
+		.pipe( jshint.reporter( 'default' ) )
 		.pipe( concat( paths.project + '.js' ) )
 		.pipe( gulp.dest( dest ) )
 		.pipe( uglify() )
@@ -172,7 +206,7 @@ gulp.task( 'js:front-end', function() {
 			suffix: '.min'
 		}))
 		.pipe( gulp.dest( dest ) )
-		.pipe( livereload() );
+		.pipe( refresh() );
 });
 
 gulp.task( 'js:admin', function() {
@@ -222,7 +256,7 @@ gulp.task( 'js:header', function() {
 			suffix: '.min'
 		}))
 		.pipe( gulp.dest( dest ) )
-		.pipe( livereload() );
+		.pipe( refresh() );
 });
 
 
@@ -236,8 +270,7 @@ gulp.task( 'theme', function() {
 		dest	= paths.web + '/wp-content/themes/' + paths.project;
 
 	return gulp.src( src )
-		.pipe( gulp.dest( dest ) )
-		.pipe( livereload() );
+		.pipe( gulp.dest( dest ) );
 });
 
 
@@ -260,8 +293,7 @@ gulp.task( 'plugin', function() {
 
 	return gulp.src([ paths.src + '/mu-plugin.php' ])
 		.pipe( rename( paths.project + '.php' ) )
-		.pipe( gulp.dest( dest ) )
-		.pipe( livereload() );
+		.pipe( gulp.dest( dest ) );
 });
 
 
@@ -287,12 +319,11 @@ gulp.task( 'default', function( callback ) {
  * watch
  * Watch files that require a task to act on them.
  */
-gulp.task( 'watch', function() {
+gulp.task( 'watch', [ 'default' ], function() {
 
-	livereload.listen();
+	refresh.listen();
 	gulp.watch( paths.src + '/sass/**/*.scss',	[ 'css' ] );
 	gulp.watch( paths.src + '/js/**/*.js',		[ 'js' ] );
 	gulp.watch( paths.src + '/theme/**/*',		[ 'theme' ] );
 	gulp.watch( paths.src + '/plugin/**/*',		[ 'plugin' ] );
-	gulp.watch( paths.src + '/wp-config/*',		[ 'copy-config' ] );
 });
