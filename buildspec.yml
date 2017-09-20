@@ -1,0 +1,19 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get install php5 php5-cli php5-common curl git -y
+      - curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+      - npm install -g gulp
+      - npm install
+  build:
+    commands:
+      - gulp deploy
+artifacts:
+  files:
+    - dist/**/*
+    - appspec.yml
+    - beforeInstall.bash
+    - afterInstall.bash

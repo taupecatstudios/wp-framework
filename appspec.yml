@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /dist
+    destination: /var/www/wordpress-new
+permissions:
+  - object: /
+    owner: www-data
+    group: www-data
+hooks:
+  AfterInstall:
+    - location: afterInstall.bash
