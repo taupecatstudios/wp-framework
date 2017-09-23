@@ -19,7 +19,8 @@ var gulp			= require( 'gulp' ),
 	shell			= require( 'gulp-shell' ),
 	deporder		= require( 'gulp-deporder' ),
 	jshint			= require( 'gulp-jshint' ),
-	refresh			= require( 'gulp-refresh' );
+	refresh			= require( 'gulp-refresh' ),
+	changed			= require( 'gulp-changed' );
 
 
 /**
@@ -153,11 +154,7 @@ gulp.task( 'css:editor', function() {
 		.pipe( sass() )
 		.pipe( postcss([
 			autoprefixer(),
-			csswring()
 		]))
-		.pipe( rename({
-			suffix: '.min'
-		}))
 		.pipe( gulp.dest( dest ) );
 });
 
@@ -223,7 +220,7 @@ gulp.task( 'js:admin', function() {
 		.pipe( rename({
 			suffix: '.min'
 		}))
-		.pipe( gulp.dest( dest ) )
+		.pipe( gulp.dest( dest ) );
 });
 
 gulp.task( 'js:plugins', function() {
@@ -238,7 +235,7 @@ gulp.task( 'js:plugins', function() {
 		.pipe( rename({
 			suffix: '.min'
 		}))
-		.pipe( gulp.dest( dest ) )
+		.pipe( gulp.dest( dest ) );
 });
 
 gulp.task( 'js:header', function() {
@@ -270,7 +267,9 @@ gulp.task( 'theme', function() {
 		dest	= paths.web + '/wp-content/themes/' + paths.project;
 
 	return gulp.src( src )
-		.pipe( gulp.dest( dest ) );
+		.pipe( changed( dest ) )
+		.pipe( gulp.dest( dest ) )
+		.pipe( refresh() );
 });
 
 
