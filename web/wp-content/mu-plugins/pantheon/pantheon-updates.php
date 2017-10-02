@@ -35,7 +35,7 @@ function _pantheon_wordpress_update_available() {
 
 	// include an unmodified $wp_version
 	include( ABSPATH . WPINC . '/version.php' );
-	
+
 	// Return true if our version is not the latest
 	return version_compare( str_replace( '-src', '', $latest_wp_version ), str_replace( '-src', '', $wp_version ), '>' );
 
@@ -82,12 +82,12 @@ function _pantheon_disable_wp_updates() {
 if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], Array('test', 'live') ) ) {
 
 	// Disable Plugin Updates
-	remove_action( 'load-update-core.php', 'wp_update_plugins' );
-	add_filter( 'pre_site_transient_update_plugins', '_pantheon_disable_wp_updates' );
+	// remove_action( 'load-update-core.php', 'wp_update_plugins' );
+	// add_filter( 'pre_site_transient_update_plugins', '_pantheon_disable_wp_updates' );
 
 	// Disable Theme Updates
-	remove_action( 'load-update-core.php', 'wp_update_themes' );
-	add_filter( 'pre_site_transient_update_themes', '_pantheon_disable_wp_updates' );
+	// remove_action( 'load-update-core.php', 'wp_update_themes' );
+	// add_filter( 'pre_site_transient_update_themes', '_pantheon_disable_wp_updates' );
 }
 
 
