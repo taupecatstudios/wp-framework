@@ -77,11 +77,6 @@ else:
         define( 'WP_TEMP_DIR', sprintf( '/srv/bindings/%s/tmp', PANTHEON_BINDING ) );
     endif;
 
-    // FS writes aren't permitted in test or live, so we should let WordPress know to disable relevant UI
-    if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'test', 'live' ) ) && ! defined( 'DISALLOW_FILE_MODS' ) ) :
-        define( 'DISALLOW_FILE_MODS', true );
-    endif;
-
     // Make sure Jetpack is always in debug mode on dev and test
     if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'dev', 'test' ) ) && ! defined( 'JETPACK_DEV_DEBUG' ) ) :
         define( 'JETPACK_DEV_DEBUG', true );
