@@ -82,7 +82,9 @@
     "deliciousbrains/wp-migrate-db-pro": "*",
     "deliciousbrains/wp-migrate-db-pro-media-files": "*",
     "deliciousbrains/wp-migrate-db-pro-cli": "*",
-    "advanced-custom-fields/advanced-custom-fields-pro": "*"
+    "advanced-custom-fields/advanced-custom-fields-pro": "*",
+    "wpackagist-plugin/sucuri-scanner": "*",
+    "wpackagist-plugin/worker": "*"
   },
   "license": "MIT",
   "authors": [
