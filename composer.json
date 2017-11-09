@@ -85,7 +85,8 @@
     "advanced-custom-fields/advanced-custom-fields-pro": "*",
     "wpackagist-plugin/sucuri-scanner": "*",
     "wpackagist-plugin/worker": "*",
-    "wpackagist-plugin/wp-native-php-sessions": "*"
+    "wpackagist-plugin/wp-native-php-sessions": "*",
+    "wpackagist-plugin/mergebot": "*"
   },
   "license": "MIT",
   "authors": [
