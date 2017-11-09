@@ -1,5 +1,11 @@
 <?php
 
+// Mergebot
+
+define( 'MERGEBOT_API_KEY', '##MERGEBOT_API_KEY##' );
+define( 'MERGEBOT_PLUGIN_MODE', 'development' );
+
+
 // Set the default (local)
 
 $hostname			= '##URL##';

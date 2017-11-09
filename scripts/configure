@@ -35,6 +35,7 @@ sed -i '' -e "s/##DESCRIPTION##/$DESCRIPTION/g"									../composer.json
 sed -i '' -e "s/##WP_MIGRATE_DB_PRO_LICENSE##/$WP_MIGRATE_DB_PRO_LICENSE/g"		../composer.json
 sed -i '' -e "s/##HOSTNAME##/$HOSTNAME/g"										../composer.json
 
+sed -i '' -e "s/##MERGEBOT_API_KEY##/$MERGEBOT_API_KEY/g"						../src/wp-config.php
 sed -i '' -e "s/##TABLE_PREFIX##/$TABLE_PREFIX/g"								../src/wp-config-local.php
 sed -i '' -e "s/##URL##/$URL/g"													../src/wp-config-local.php
 sed -i '' -e "s/##DB_NAME##/$DB_NAME/g"											../src/wp-config-local.php
