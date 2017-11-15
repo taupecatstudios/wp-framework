@@ -32,6 +32,7 @@ apt-get install -y \
 	php-imagick \
 	php-mbstring \
 	php-mysql \
+	php-xdebug \
 	>/dev/null 2>&1
 rm /etc/php/7.0/fpm/php.ini >/dev/null 2>&1
 rm /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
