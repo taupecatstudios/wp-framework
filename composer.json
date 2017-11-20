@@ -86,7 +86,16 @@
     "wpackagist-plugin/sucuri-scanner": "*",
     "wpackagist-plugin/worker": "*",
     "wpackagist-plugin/wp-native-php-sessions": "*",
-    "wpackagist-plugin/mergebot": "*"
+    "wpackagist-plugin/mergebot": "*",
+    "wpackagist-plugin/pantheon-hud": "*",
+    "wpackagist-theme/twentyten": "*",
+    "wpackagist-theme/twentyeleven": "*",
+    "wpackagist-theme/twentytwelve": "*",
+    "wpackagist-theme/twentythirteen": "*",
+    "wpackagist-theme/twentyfourteen": "*",
+    "wpackagist-theme/twentyfifteen": "*",
+    "wpackagist-theme/twentysixteen": "*",
+    "wpackagist-theme/twentyseventeen": "*"
   },
   "license": "MIT",
   "authors": [
