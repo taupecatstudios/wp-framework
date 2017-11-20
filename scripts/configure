@@ -43,6 +43,7 @@ sed -i '' -e "s/##DB_NAME##/$DB_NAME/g"											../src/wp-config-local.php
 sed -i '' -e "s/##MERGEBOT_API_KEY##/$MERGEBOT_API_KEY/g"						../src/wp-config.php
 sed -i '' -e "s/##PRODUCTION_DOMAIN##/$PRODUCTION_DOMAIN/g"						../src/wp-config.php
 sed -i '' -e "s/##TABLE_PREFIX##/$TABLE_PREFIX/g"								../src/wp-config.php
+sed -i '' -e "s/##PROJECT##/$PROJECT/g"											../src/wp-config.php
 
 sed -i '' -e "s/##PROJECT##/$PROJECT/g"											../src/mu-plugin.php
 sed -i '' -e "s/##PROJECT_NAME##/$PROJECT_NAME/g"								../src/mu-plugin.php

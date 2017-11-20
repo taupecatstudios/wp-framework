@@ -106,30 +106,36 @@ else:
   endif;
 endif;
 
-if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
-  // Redirect to https://$primary_domain/ in the Live environment
-  if ($_ENV['PANTHEON_ENVIRONMENT'] === 'live') {
+if ( ( isset( $_SERVER['PANTHEON_ENVIRONMENT'] ) ) && ( php_sapi_name() != 'cli' ) ) {
+
+  /** Redirect to https://$primary_domain/ in the Live environment */
+
+  if ( 'live' === $_ENV['PANTHEON_ENVIRONMENT'] ) {
+
     /** Replace www.example.com with your registered domain name */
     $primary_domain = '##PRODUCTION_DOMAIN##';
-  }
-  else {
-    // Redirect to HTTPS on every Pantheon environment.
-    $primary_domain = $_SERVER['HTTP_HOST'];
-  }
-  $base_url = 'https://'. $primary_domain;
-  define('WP_SITEURL', $base_url);
-  define('WP_HOME', $base_url);
-  if ($_SERVER['HTTP_HOST'] != $primary_domain
-      || !isset($_SERVER['HTTP_X_SSL'])
-      || $_SERVER['HTTP_X_SSL'] != 'ON' ) {
 
-    # Name transaction "redirect" in New Relic for improved reporting (optional)
-    if (extension_loaded('newrelic')) {
-      newrelic_name_transaction("redirect");
+  } else {
+
+    /** Redirect to HTTPS on every Pantheon environment */
+    $primary_domain = $_ENV['PANTHEON_ENVIRONMENT'] . '-##PROJECT##.pantheonsite.io';
+  }
+
+  $base_url = 'https://' . $primary_domain;
+
+  define( 'WP_HOME', $base_url );
+  define( 'WP_SITEURL', WP_HOME );
+
+  if ( ( $primary_domain !== $_SERVER['HTTP_HOST'] ) || ( ! isset( $_SERVER['HTTP_X_SSL'] ) ) || ( 'ON' !== $_SERVER['HTTP_X_SSL'] ) ) {
+
+    /** Name transaction "redirect" in New Relic for improved reporting (optional) */
+    if ( extension_loaded( 'newrelic' ) ) {
+
+      newrelic_name_transaction( 'redirect' );
     }
 
-    header('HTTP/1.0 301 Moved Permanently');
-    header('Location: '. $base_url . $_SERVER['REQUEST_URI']);
+    header( 'HTTP/1.0 301 Moved Permanently' );
+    header( 'Location: ' . $base_url . $_SERVER['REQUEST_URI'] );
     exit();
   }
 }
