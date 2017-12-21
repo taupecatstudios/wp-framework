@@ -7,6 +7,7 @@ aws --profile taupecat s3 cp s3://taupecat-studios/taupecat.key ./
 aws --profile taupecat s3 cp s3://taupecat-studios/licenses.bash ./
 aws --profile taupecat s3 cp s3://taupecat-studios/.env ../
 aws --profile taupecat s3 cp s3://taupecat-studios/prepare-commit-msg ../.git/hooks/
+chmod +x ../.git/hooks/prepare-commit-msg
 
 # Go through the files that have variables that need replacing and, well, replace them.
 
