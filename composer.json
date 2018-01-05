@@ -88,6 +88,8 @@
     "wpackagist-plugin/wp-native-php-sessions": "*",
     "wpackagist-plugin/mergebot": "*",
     "wpackagist-plugin/pantheon-hud": "*",
+    "wpackagist-plugin/iq-block-country": "*",
+    "wpackagist-plugin/limit-login-attempts": "*",
     "wpackagist-theme/twentyten": "*",
     "wpackagist-theme/twentyeleven": "*",
     "wpackagist-theme/twentytwelve": "*",
