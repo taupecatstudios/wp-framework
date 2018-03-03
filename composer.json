@@ -91,6 +91,7 @@
     "wpackagist-plugin/iq-block-country": "dev-trunk",
     "wpackagist-plugin/limit-login-attempts": "*",
     "wpackagist-plugin/pantheon-advanced-page-cache": "*",
+    "wpackagist-plugin/classic-editor": "*",
     "wpackagist-theme/twentyten": "*",
     "wpackagist-theme/twentyeleven": "*",
     "wpackagist-theme/twentytwelve": "*",
