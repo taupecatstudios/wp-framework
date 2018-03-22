@@ -15,10 +15,12 @@ mysqladmin --user=root --password=password create $DB_NAME >/dev/null 2>&1
 
 echo "Installing nginx"
 apt-get install -y nginx >/dev/null 2>&1
+
 rm /etc/nginx/sites-enabled/default >/dev/null 2>&1
-ln -s /vagrant/scripts/nginx.conf /etc/nginx/sites-enabled/default >/dev/null 2>&1
-sed -i 's/www-data/ubuntu/' /etc/nginx/nginx.conf >/dev/null 2>&1
-sed -i 's/www-data/ubuntu/' /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
+ln -s /vagrant/scripts/default.conf /etc/nginx/sites-enabled/default >/dev/null 2>&1
+
+rm /etc/nginx/nginx.conf >/dev/null 2>&1
+ln -s /vagrant/scripts/nginx.conf /etc/nginx/nginx.conf >/dev/null 2>&1
 
 echo "Installing php7"
 apt-get install -y \
@@ -33,11 +35,15 @@ apt-get install -y \
 	php-mbstring \
 	php-mysql \
 	php-xdebug \
+	php-json \
 	>/dev/null 2>&1
+
 rm /etc/php/7.0/fpm/php.ini >/dev/null 2>&1
-rm /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
 ln -s /vagrant/scripts/php.ini /etc/php/7.0/fpm/php.ini >/dev/null 2>&1
+
+rm /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
 ln -s /vagrant/scripts/www.conf /etc/php/7.0/fpm/pool.d/www.conf >/dev/null 2>&1
+
 service php7.0-fpm restart >/dev/null 2>&1
 
 echo "Installing PHPUnit"
