@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant"
 
   # Use vagrant-bindfs to re-mount folder
-  config.bindfs.bind_folder "/vagrant", "/vagrant", :owner => 'ubuntu', :group => 'ubuntu'
+  config.bindfs.bind_folder "/vagrant", "/vagrant", :owner => 'vagrant', :group => 'vagrant'
 
   config.vm.provider "virtualbox" do |v|
     host = RbConfig::CONFIG['host_os']
