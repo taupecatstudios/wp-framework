@@ -74,24 +74,27 @@
     }
   ],
   "require": {
-    "wpackagist-plugin/debug-bar": "*",
-    "wpackagist-plugin/akismet": "*",
-    "wpackagist-plugin/theme-check": "*",
-    "wpackagist-plugin/wp-log-viewer": "*",
-    "wpackagist-plugin/show-current-template": "*",
-    "deliciousbrains/wp-migrate-db-pro": "*",
-    "deliciousbrains/wp-migrate-db-pro-media-files": "*",
-    "deliciousbrains/wp-migrate-db-pro-cli": "*",
     "advanced-custom-fields/advanced-custom-fields-pro": "*",
-    "wpackagist-plugin/sucuri-scanner": "*",
-    "wpackagist-plugin/worker": "*",
-    "wpackagist-plugin/wp-native-php-sessions": "*",
-    "wpackagist-plugin/mergebot": "*",
-    "wpackagist-plugin/pantheon-hud": "*",
+
+    "deliciousbrains/wp-migrate-db-pro": "*",
+    "deliciousbrains/wp-migrate-db-pro-cli": "*",
+    "deliciousbrains/wp-migrate-db-pro-media-files": "*",
+
+    "wpackagist-plugin/akismet": "*",
+    "wpackagist-plugin/classic-editor": "*",
+    "wpackagist-plugin/debug-bar": "*",
     "wpackagist-plugin/iq-block-country": "dev-trunk",
     "wpackagist-plugin/limit-login-attempts": "*",
+    "wpackagist-plugin/mergebot": "*",
     "wpackagist-plugin/pantheon-advanced-page-cache": "*",
-    "wpackagist-plugin/classic-editor": "*",
+    "wpackagist-plugin/pantheon-hud": "*",
+    "wpackagist-plugin/show-current-template": "*",
+    "wpackagist-plugin/sucuri-scanner": "*",
+    "wpackagist-plugin/theme-check": "*",
+    "wpackagist-plugin/worker": "*",
+    "wpackagist-plugin/wp-log-viewer": "*",
+    "wpackagist-plugin/wp-native-php-sessions": "*",
+
     "wpackagist-theme/twentyten": "*",
     "wpackagist-theme/twentyeleven": "*",
     "wpackagist-theme/twentytwelve": "*",
@@ -100,6 +103,7 @@
     "wpackagist-theme/twentyfifteen": "*",
     "wpackagist-theme/twentysixteen": "*",
     "wpackagist-theme/twentyseventeen": "*"
+
   },
   "license": "MIT",
   "authors": [
