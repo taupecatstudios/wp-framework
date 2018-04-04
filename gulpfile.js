@@ -27,8 +27,8 @@ var gulp			= require( 'gulp' ),
  * Directories
  */
 var paths = {
-	web:			__dirname + '/web',
-	src:			__dirname + '/src',
+	web:			'web',
+	src:			'src',
 	project:		'##PROJECT##'
 }
 
